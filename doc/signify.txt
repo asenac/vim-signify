@@ -283,6 +283,13 @@ Default mapping:  <leader>gt
 
 ------------------------------------------------------------------------------
 >
+    :SignifyForce
+<
+Force the plugin for the current buffer only.
+Default mapping:  <leader>gf
+
+------------------------------------------------------------------------------
+>
     :SignifyToggleHighlight
 <
 Toggle line highlighting for lines containing changes.
