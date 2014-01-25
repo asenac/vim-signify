@@ -128,3 +128,9 @@ function! sy#toggle() abort
     call sy#start(b:sy.path)
   endif
 endfunction
+
+" Function: #force {{{1
+function! sy#force() abort
+  let b:sy.active = 0
+  call sy#toggle()
+endfunction

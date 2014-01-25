@@ -50,6 +50,7 @@ augroup END
 " Init: commands {{{1
 com! -nargs=0 -bar  SignifyToggle          call sy#toggle()
 com! -nargs=0 -bar  SignifyToggleHighlight call sy#highlight#line_toggle()
+com! -nargs=0 -bar  SignifyForce           call sy#force()
 com! -nargs=0 -bar  SyDebug                call sy#debug#list_active_buffers()
 
 " Init: mappings {{{1
@@ -57,6 +58,7 @@ nnoremap <silent> <expr> <plug>(signify-next-hunk) &diff ? ']c' : ":\<c-u>call s
 nnoremap <silent> <expr> <plug>(signify-prev-hunk) &diff ? '[c' : ":\<c-u>call sy#jump#prev_hunk(v:count1)\<cr>"
 nnoremap <silent> <plug>(signify-toggle-highlight) :<c-u>call sy#highlight#line_toggle()<cr>
 nnoremap <silent> <plug>(signify-toggle)           :<c-u>call sy#toggle()<cr>
+nnoremap <silent> <plug>(signify-force)            :<c-u>call sy#force()<cr>
 
 if exists('g:signify_mapping_next_hunk')
   execute 'nmap '. g:signify_mapping_next_hunk .' <plug>(signify-next-hunk)'
@@ -80,6 +82,12 @@ if exists('g:signify_mapping_toggle')
   execute 'nmap '. g:signify_mapping_toggle .' <plug>(signify-toggle)'
 elseif !hasmapto('<plug>(signify-toggle)') && empty(maparg('<leader>gt', 'n'))
   nmap <leader>gt <plug>(signify-toggle)
+endif
+
+if exists('g:signify_mapping_force')
+  execute 'nmap '. g:signify_mapping_force .' <plug>(signify-force)'
+elseif !hasmapto('<plug>(signify-force)') && empty(maparg('<leader>gf', 'n'))
+  nmap <leader>gf <plug>(signify-force)
 endif
 
 if empty(maparg(']c', 'n'))
